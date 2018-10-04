@@ -1,0 +1,302 @@
+ 
+============================================================================================== 
+ 
+V4.0.1    
+ 
+Compiling: WRF_EM_CORE  
+WRFIO_NCD_LARGE_FILE_SUPPORT=1
+ 
+Linux bslscihub-ws8 3.10.0-327.36.2.el7.x86_64 #1 SMP Mon Oct 10 23:08:37 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+ 
+GNU Fortran (GCC) 4.7.3
+Copyright (C) 2012 Free Software Foundation, Inc.
+
+GNU Fortran comes with NO WARRANTY, to the extent permitted by law.
+You may redistribute copies of GNU Fortran
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING
+
+ 
+============================================================================================== 
+ 
+setting parallel make -j 2
+ 
+============================================================================================== 
+ 
+The following indicate the compilers selected to build the WRF system
+ 
+Serial Fortran compiler (mostly for tool generation):
+which SFC
+/cm/shared/apps/gcc/4.7.3/bin/gfortran
+ 
+Serial C compiler (mostly for tool generation):
+which SCC
+/cm/shared/apps/gcc/4.7.3/bin/gcc
+ 
+Fortran compiler for the model source code:
+which FC
+/cm/shared/apps/mpich/ge/gcc/64/3.0.4/bin/mpif90
+Will use 'time' to report timing information
+ 
+C compiler for the model source code:
+which CC
+/cm/shared/apps/mpich/ge/gcc/64/3.0.4/bin/mpicc
+ 
+============================================================================================== 
+ 
+make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " ext
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd frame ; make -i -r externals ) ; \
+else \
+  ( cd frame ; make -i -r PLUSFLAG="-DWRFPLUS=1" externals ) ; \
+fi
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 ; \
+          make -j 2 FC="gfortran   -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 " RANLIB="ranlib" \
+          CPP="/lib/cpp -P -nostdinc -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I. -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM -DNO_IEEE_MODULE  -DDM_PARALLEL -DNETCDF -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=1 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -traditional-cpp" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90'
+make[3]: Nothing to be done for `default'.
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf ; \
+          make -j 2 NETCDFPATH="/cluster-packages/apps/netcdf/gcc/64/4.1.3" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          CC="gcc" CFLAGS="-w -O3 -c  -DDM_PARALLEL -DMAX_HISTORY=25 -DNMM_CORE=0" \
+          FC="gfortran   -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 " TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/ioapi_share ; \
+          make -i -r NATIVE_RWORDSIZE="4" RWORDSIZE="4" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/ioapi_share'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/ioapi_share'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share ; \
+          make -j 2 CC="gcc" CFLAGS="-w -O3 -c  -DDM_PARALLEL -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="gfortran  -I.  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4  " TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" archive) 
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share'
+make[4]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share'
+ar ru ./libio_grib_share.a io_grib_share.o get_region_center.o gridnav.o open_file.o
+ranlib ./libio_grib_share.a
+make[4]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share'
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1 ; \
+          make -j 2 CC="gcc" CFLAGS="-w -O3 -c  -DDM_PARALLEL -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="gfortran  -I.  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4  " TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" archive)
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1'
+        Doing make archive on library subdirectory MEL_grib1
+make[4]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/MEL_grib1'
+make[5]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/MEL_grib1'
+ar ru ../libio_grib1.a FTP_getfile.o apply_bitmap.o display_gribhdr.o gbyte.o grib_dec.o grib_enc.o grib_seek.o gribgetbds.o gribgetbms.o gribgetgds.o gribgetpds.o gribhdr2file.o gribputbds.o gribputgds.o gribputpds.o hdr_print.o init_dec_struct.o init_enc_struct.o init_gribhdr.o init_struct.o ld_dec_lookup.o ld_enc_input.o ld_enc_lookup.o ld_grib_origctrs.o make_default_grbfn.o make_grib_log.o map_lvl.o map_parm.o pack_spatial.o prt_inp_struct.o upd_child_errmsg.o prt_badmsg.o swap.o grib_uthin.o set_bytes.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/MEL_grib1'
+make[4]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/MEL_grib1'
+        Doing make archive on library subdirectory grib1_util
+make[4]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/grib1_util'
+make[5]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/grib1_util'
+ar ru ../libio_grib1.a alloc_2d.o read_grib.o write_grib.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/grib1_util'
+make[4]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/grib1_util'
+        Doing make archive on library subdirectory WGRIB
+make[4]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/WGRIB'
+make[4]: Nothing to be done for `archive'.
+make[4]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/WGRIB'
+make[4]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1'
+ar ru ./libio_grib1.a grib1_routines.o gribmap.o io_grib1.o trim.o
+ranlib ./libio_grib1.a
+make[4]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1'
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int ; \
+          make -j 2 CC="mpicc -cc=gcc -DFSEEKO64_OK " CFLAGS_LOCAL="-w -O3 -c " RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="time mpif90 -f90=gfortran   -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4  " FGREP="fgrep -iq" \
+          TRADFLAG="-traditional-cpp" AR="ar" ARFLAGS="ru" ARCHFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM -DNO_IEEE_MODULE  -DDM_PARALLEL -DNETCDF -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=1 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0" all )
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int'
+( cd /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/fftpack/fftpack5 ; \
+          make -j 2 FC="gfortran" FFLAGS="  -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 " RANLIB="ranlib" AR="ar" \
+          ARFLAGS="ru" CPP="/lib/cpp -P -nostdinc" CPPFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM -DNO_IEEE_MODULE  -DDM_PARALLEL -DNETCDF -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=1 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DWRF_CHEM -DBUILD_CHEM=1 -I. -traditional-cpp " RM="rm -f" )
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/fftpack/fftpack5'
+ar ru libfftpack.a c1f2kb.o  cfft1b.o  cmf3kf.o  cosqb1.o  costmi.o   dcosq1f.o  dfftb1.o   mradb2.o  mrfti1.o  r1fgkf.o     rfft2i.o  sinqmi.o  z1f2kf.o  zfft1f.o  zmf4kb.o c1f2kf.o  cfft1f.o  cmf4kb.o  cosqf1.o  d1f2kb.o   dcosq1i.o  dfftf1.o   mradb3.o  msntb1.o  r4_factor.o  rfftb1.o  sint1b.o  z1f3kb.o  zfft1i.o  zmf4kf.o c1f3kb.o  cfft1i.o  cmf4kf.o  cosqmb.o  d1f2kf.o   dcosqb1.o  dffti1.o   mradb4.o  msntf1.o  r4_mcfti1.o  rfftf1.o  sint1f.o  z1f3kf.o  zfft2b.o  zmf5kb.o c1f3kf.o  cfft2b.o  cmf5kb.o  cosqmf.o  d1f3kb.o   dcosqf1.o  dsint1b.o  mradb5.o  r1f2kb.o  r4_tables.o  rffti1.o  sint1i.o  z1f4kb.o  zfft2f.o  zmf5kf.o c1f4kb.o  cfft2f.o  cmf5kf.o  cosqmi.o  d1f3kf.o   dcost1b.o  dsint1f.o  mradbg.o  r1f2kf.o  r8_factor.o  rfftmb.o  sintb1.o  z1f4kf.o  zfft2i.o  zmfgkb.o c1f4kf.o  cfft2i.o  cmfgkb.o  cost1b.o  d1f4kb.o   dcost1f.o  dsint1i.o  mradf2.o  r1f3kb.o  r8_mcfti1.o  rfftmf.o  sintf1.o  z1f5kb.o  zfftmb.o  zmfgkf.o c1f5kb.o  cfftmb.o  cmfgkf.o  cost1f.o  d1f4kf.o   dcost1i.o  dsintb1.o  mradf3.o  r1f3kf.o  r8_tables.o  rfftmi.o  sintmb.o  z1f5kf.o  zfftmf.o  zmfm1b.o c1f5kf.o  cfftmf.o  cmfm1b.o  cost1i.o  d1f5kb.o   dcostb1.o  dsintf1.o  mradf4.o  r1f4kb.o  rfft1b.o     sinq1b.o  sintmf.o  z1fgkb.o  zfftmi.o  zmfm1f.o c1fgkb.o  cfftmi.o  cmfm1f.o  costb1.o  d1f5kf.o   dcostf1.o  mcsqb1.o   mradf5.o  r1f4kf.o  rfft1f.o     sinq1f.o  sintmi.o  z1fgkf.o  zmf2kb.o c1fgkf.o  cmf2kb.o  cosq1b.o  costf1.o  d1fgkb.o   dfft1b.o   mcsqf1.o   mradfg.o  r1f5kb.o  rfft1i.o     sinq1i.o  xercon.o  z1fm1b.o  zmf2kf.o c1fm1b.o  cmf2kf.o  cosq1f.o  costmb.o  d1fgkf.o   dfft1f.o   mcstb1.o   mrftb1.o  r1f5kf.o  rfft2b.o     sinqmb.o  xerfft.o  z1fm1f.o  zmf3kb.o c1fm1f.o  cmf3kb.o  cosq1i.o  costmf.o  dcosq1b.o  dfft1i.o   mcstf1.o   mrftf1.o  r1fgkb.o  rfft2f.o     sinqmf.o  z1f2kb.o  zfft1b.o  zmf3kf.o 
+ranlib libfftpack.a
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/fftpack/fftpack5'
+( if [ ! -e /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools/gen_comms.c ] ; then \
+          /bin/cp /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools/gen_comms_warning /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools/gen_comms.c ; \
+          cat /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/RSL_LITE/gen_comms.c >> /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools/gen_comms.c ; fi )
+( if [ ! -e module_dm.F ] ; then /bin/cp module_dm_warning module_dm.F ; \
+          cat /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/RSL_LITE/module_dm.F >> module_dm.F ; fi )
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " toolsdir
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="gcc  -DIWORDSIZE=4 -DMAX_HISTORY=25" ) ; \
+else \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="gcc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -DWRFPLUS=1" ) ; \
+fi
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools'
+make[2]: `registry' is up to date.
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+/bin/rm -f main/libwrflib.a main/libwrflib.lib
+make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " framework
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+( cd frame ; make -i -r -j 2 LLIST="" framework ; \
+          cd ../external/io_netcdf ; \
+          make -i -r NETCDFPATH="/cluster-packages/apps/netcdf/gcc/64/4.1.3" \
+               FC="time mpif90 -f90=gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdf ; \
+          make -i -r NETCDFPATH="/cluster-packages/apps/netcdf/gcc/64/4.1.3" \
+               FC="gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_pio ; \
+          echo SKIPPING PIO BUILD make -i -r NETCDFPATH="" \
+               FC="gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4   " TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_int ; \
+          make -i -r SFC="gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 " \
+               FC="gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    " \
+               RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM -DNO_IEEE_MODULE" DM_FC="mpif90 -f90=gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4 "\
+               TRADFLAG="-traditional-cpp" ESMF_IO_LIB_EXT="-L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time" \
+               ESMF_MOD_DEPENDENCE="/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf ; \
+          cd ../../frame )
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame'
+ar ru ../main/libwrflib.a module_driver_constants.o module_domain_type.o module_streams.o module_domain.o  module_integrate.o module_timing.o module_configure.o module_tiles.o module_machine.o module_nesting.o module_wrf_error.o module_state_description.o module_sm.o module_io.o module_comm_dm.o module_comm_dm_0.o module_comm_dm_1.o module_comm_dm_2.o module_comm_dm_3.o module_comm_dm_4.o module_comm_nesting_dm.o module_dm.o module_quilt_outbuf_ops.o module_io_quilt.o module_intermediate_nmm.o module_cpl.o module_cpl_oasis3.o module_clear_halos.o wrf_num_bytes_between.o wrf_shutdown.o wrf_debug.o libmassv.o collect_on_comm.o hires_timer.o clog.o nl_get_0_routines.o nl_get_1_routines.o nl_get_2_routines.o nl_get_3_routines.o nl_get_4_routines.o nl_get_5_routines.o nl_get_6_routines.o nl_get_7_routines.o nl_set_0_routines.o nl_set_1_routines.o nl_set_2_routines.o nl_set_3_routines.o nl_set_4_routines.o nl_set_5_routines.o nl_set_6_routines.o nl_set_7_routines.o  module_alloc_space_0.o module_alloc_space_1.o module_alloc_space_2.o module_alloc_space_3.o module_alloc_space_4.o module_alloc_space_5.o module_alloc_space_6.o module_alloc_space_7.o module_alloc_space_8.o module_alloc_space_9.o
+ar: creating ../main/libwrflib.a
+ranlib ../main/libwrflib.a
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame'
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf'
+make[2]: `diffwrf' is up to date.
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf'
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf'
+SKIPPING PIO BUILD make -i -r NETCDFPATH= FC=gfortran -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4     RANLIB=ranlib CPP=/lib/cpp -P -nostdinc LDFLAGS= -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    TRADFLAG=-traditional-cpp ESMF_IO_LIB_EXT=-L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time LIB_LOCAL= ESMF_MOD_DEPENDENCE=/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90/module_utility.o AR=INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int'
+make[2]: `diffwrf' is up to date.
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " shared
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+if [ "`echo -j 2 | sed -e 's/-j//g' -e 's/ \+//g'`" -gt "6" ] ; then \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 6 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 6 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+else \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 2 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 2 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+fi
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share'
+if [ 0 -eq 1 ] ; then \
+                  make -i -r nmm_contrib                                      ; \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_check_a_mundo.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o    ; \
+                  else                                                         \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_check_a_mundo.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o              ; \
+                fi
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " physics
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+if [ 1  -eq 0 ] ; then \
+	( cd phys ; make -i -r CF2=" " ) ; \
+else \
+	( cd phys ; make -i -r CF2="../chem/module_data_mosaic_asect.o" ) ; \
+fi
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys'
+if [ 0 -eq 1 ] ; then \
+                  make -i -r -j 2 nmm_contrib  ; \
+                  ar ru ../main/libwrflib.a module_cam_shr_kind_mod.o module_cam_support.o module_cam_shr_const_mod.o module_cam_physconst.o module_cam_cldwat.o module_cam_wv_saturation.o module_cam_esinti.o module_cam_gffgch.o module_cam_error_function.o module_cam_constituents.o module_cam_trb_mtn_stress.o module_cam_molec_diff.o module_cam_upper_bc.o module_cam_bl_diffusion_solver.o module_cam_bl_eddy_diff.o module_cam_mp_microp_aero.o module_cam_mp_cldwat2m_micro.o module_cam_mp_ndrop.o module_cam_mp_modal_aero_initialize_data_phys.o module_cam_mp_radconstants.o module_cam_mp_conv_water.o module_cam_mp_qneg3.o module_data_cam_mam_aero.o module_data_cam_mam_asect.o module_cam_infnan.o  module_bl_ysu.o module_bl_shinhong.o module_bl_mrf.o module_bl_gfs.o module_bl_gfsedmf.o module_bl_myjpbl.o module_bl_qnsepbl.o module_bl_acm.o module_bl_mynn.o module_bl_fogdes.o module_bl_gwdo.o module_bl_myjurb.o module_bl_boulac.o module_bl_camuwpbl_driver.o module_bl_mfshconvpbl.o module_shcu_camuwshcu_driver.o module_shcu_camuwshcu.o module_shcu_grims.o module_shcu_nscv.o module_cu_camzm_driver.o module_cu_camzm.o module_bl_temf.o module_bl_gbmpbl.o module_cu_g3.o module_cu_kf.o module_cu_bmj.o module_cu_kfeta.o module_cu_mskf.o module_cu_tiedtke.o module_cu_ntiedtke.o module_cu_gd.o module_cu_gf_wrfdrv.o module_cu_gf_deep.o module_cu_gf_sh.o module_cu_ksas.o module_cu_nsas.o module_cu_sas.o module_cu_scalesas.o module_cu_osas.o module_cu_kfcup.o module_mp_radar.o module_mp_kessler.o module_mp_lin.o module_mp_sbu_ylin.o module_mp_wsm3.o module_mp_wsm5.o module_mp_wsm6.o module_mp_etanew.o module_mp_fer_hires.o module_mp_HWRF.o module_mp_thompson.o module_mp_full_sbm.o module_mp_fast_sbm.o module_ltng_lpi.o module_mp_gsfcgce.o module_mp_morr_two_moment.o module_mp_p3.o module_mp_morr_two_moment_aero.o module_mp_milbrandt2mom.o module_mp_nssl_2mom.o module_mp_wdm5.o module_mp_wdm6.o module_mp_cammgmp_driver.o module_ra_sw.o module_ra_clWRF_support.o module_ra_gsfcsw.o module_ra_goddard.o module_ra_effective_radius.o module_ra_rrtm.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o module_ra_rrtmg_lwf.o module_ra_rrtmg_swf.o module_ra_rrtmg_lwk.o module_ra_rrtmg_swk.o module_ra_cam_support.o module_ra_cam.o module_ra_gfdleta.o module_ra_flg.o module_ra_HWRF.o module_ra_hs.o module_ra_aerosol.o module_sf_sfclay.o module_sf_sfclayrev.o module_sf_gfs.o module_sf_exchcoef.o module_sf_gfdl.o module_sf_slab.o module_sf_noahdrv.o module_sf_noahlsm.o module_sf_clm.o module_sf_ssib.o module_sf_noah_seaice.o module_sf_noah_seaice_drv.o module_sf_noahlsm_glacial_only.o module_sf_noahmp_groundwater.o module_sf_gecros.o module_sf_noahmpdrv.o module_sf_noahmplsm.o module_sf_noahmp_glacier.o module_sf_urban.o module_sf_bep.o module_sf_bep_bem.o module_sf_bem.o module_sf_pxlsm.o module_sf_pxlsm_data.o module_sf_ruclsm.o module_sf_sfcdiags.o module_sf_sfcdiags_ruclsm.o module_sf_sstskin.o module_sf_tmnupdate.o module_sf_ocean_driver.o module_sf_oml.o module_sf_3dpwp.o module_sf_myjsfc.o module_sf_qnsesfc.o module_sf_mynn.o module_sf_fogdes.o module_sf_pxsfclay.o module_sf_temfsfclay.o module_sf_idealscmsfclay.o module_sf_scmflux.o module_sf_scmskintemp.o module_physics_addtendc.o module_physics_init.o module_gfs_machine.o module_gfs_funcphys.o module_gfs_physcons.o module_progtm.o module_pbl_driver.o module_data_gocart_dust.o module_dust_emis.o module_cumulus_driver.o module_shallowcu_driver.o module_microphysics_driver.o module_microphysics_zero_out.o module_mixactivate.o module_radiation_driver.o module_surface_driver.o module_lightning_driver.o module_ltng_cpmpr92z.o module_ltng_crmpr92.o module_ltng_iccg.o module_fdda_psufddagd.o module_fdda_spnudging.o module_fddagd_driver.o module_fddaobs_rtfdda.o module_fddaobs_driver.o module_wind_fitch.o module_sf_lake.o module_diagnostics_driver.o  \
+                                     \
+                                   module_diag_refl.o ; \
+                else                                                         \
+                  make -i -r -j 2 non_nmm      ; \
+                  ar ru ../main/libwrflib.a module_cam_shr_kind_mod.o module_cam_support.o module_cam_shr_const_mod.o module_cam_physconst.o module_cam_cldwat.o module_cam_wv_saturation.o module_cam_esinti.o module_cam_gffgch.o module_cam_error_function.o module_cam_constituents.o module_cam_trb_mtn_stress.o module_cam_molec_diff.o module_cam_upper_bc.o module_cam_bl_diffusion_solver.o module_cam_bl_eddy_diff.o module_cam_mp_microp_aero.o module_cam_mp_cldwat2m_micro.o module_cam_mp_ndrop.o module_cam_mp_modal_aero_initialize_data_phys.o module_cam_mp_radconstants.o module_cam_mp_conv_water.o module_cam_mp_qneg3.o module_data_cam_mam_aero.o module_data_cam_mam_asect.o module_cam_infnan.o  module_bl_ysu.o module_bl_shinhong.o module_bl_mrf.o module_bl_gfs.o module_bl_gfsedmf.o module_bl_myjpbl.o module_bl_qnsepbl.o module_bl_acm.o module_bl_mynn.o module_bl_fogdes.o module_bl_gwdo.o module_bl_myjurb.o module_bl_boulac.o module_bl_camuwpbl_driver.o module_bl_mfshconvpbl.o module_shcu_camuwshcu_driver.o module_shcu_camuwshcu.o module_shcu_grims.o module_shcu_nscv.o module_cu_camzm_driver.o module_cu_camzm.o module_bl_temf.o module_bl_gbmpbl.o module_cu_g3.o module_cu_kf.o module_cu_bmj.o module_cu_kfeta.o module_cu_mskf.o module_cu_tiedtke.o module_cu_ntiedtke.o module_cu_gd.o module_cu_gf_wrfdrv.o module_cu_gf_deep.o module_cu_gf_sh.o module_cu_ksas.o module_cu_nsas.o module_cu_sas.o module_cu_scalesas.o module_cu_osas.o module_cu_kfcup.o module_mp_radar.o module_mp_kessler.o module_mp_lin.o module_mp_sbu_ylin.o module_mp_wsm3.o module_mp_wsm5.o module_mp_wsm6.o module_mp_etanew.o module_mp_fer_hires.o module_mp_HWRF.o module_mp_thompson.o module_mp_full_sbm.o module_mp_fast_sbm.o module_ltng_lpi.o module_mp_gsfcgce.o module_mp_morr_two_moment.o module_mp_p3.o module_mp_morr_two_moment_aero.o module_mp_milbrandt2mom.o module_mp_nssl_2mom.o module_mp_wdm5.o module_mp_wdm6.o module_mp_cammgmp_driver.o module_ra_sw.o module_ra_clWRF_support.o module_ra_gsfcsw.o module_ra_goddard.o module_ra_effective_radius.o module_ra_rrtm.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o module_ra_rrtmg_lwf.o module_ra_rrtmg_swf.o module_ra_rrtmg_lwk.o module_ra_rrtmg_swk.o module_ra_cam_support.o module_ra_cam.o module_ra_gfdleta.o module_ra_flg.o module_ra_HWRF.o module_ra_hs.o module_ra_aerosol.o module_sf_sfclay.o module_sf_sfclayrev.o module_sf_gfs.o module_sf_exchcoef.o module_sf_gfdl.o module_sf_slab.o module_sf_noahdrv.o module_sf_noahlsm.o module_sf_clm.o module_sf_ssib.o module_sf_noah_seaice.o module_sf_noah_seaice_drv.o module_sf_noahlsm_glacial_only.o module_sf_noahmp_groundwater.o module_sf_gecros.o module_sf_noahmpdrv.o module_sf_noahmplsm.o module_sf_noahmp_glacier.o module_sf_urban.o module_sf_bep.o module_sf_bep_bem.o module_sf_bem.o module_sf_pxlsm.o module_sf_pxlsm_data.o module_sf_ruclsm.o module_sf_sfcdiags.o module_sf_sfcdiags_ruclsm.o module_sf_sstskin.o module_sf_tmnupdate.o module_sf_ocean_driver.o module_sf_oml.o module_sf_3dpwp.o module_sf_myjsfc.o module_sf_qnsesfc.o module_sf_mynn.o module_sf_fogdes.o module_sf_pxsfclay.o module_sf_temfsfclay.o module_sf_idealscmsfclay.o module_sf_scmflux.o module_sf_scmskintemp.o module_physics_addtendc.o module_physics_init.o module_gfs_machine.o module_gfs_funcphys.o module_gfs_physcons.o module_progtm.o module_pbl_driver.o module_data_gocart_dust.o module_dust_emis.o module_cumulus_driver.o module_shallowcu_driver.o module_microphysics_driver.o module_microphysics_zero_out.o module_mixactivate.o module_radiation_driver.o module_surface_driver.o module_lightning_driver.o module_ltng_cpmpr92z.o module_ltng_crmpr92.o module_ltng_iccg.o module_fdda_psufddagd.o module_fdda_spnudging.o module_fddagd_driver.o module_fddaobs_rtfdda.o module_fddaobs_driver.o module_wind_fitch.o module_sf_lake.o module_diagnostics_driver.o  \
+                                   module_fr_fire_driver.o module_fr_fire_driver_wrf.o module_fr_fire_atm.o module_fr_fire_model.o module_fr_fire_core.o module_fr_fire_phys.o module_fr_fire_util.o \
+                                   module_diag_afwa.o module_diag_cl.o module_diag_functions.o module_diag_hailcast.o module_diag_misc.o module_diag_rasm.o module_diag_pld.o module_diag_zld.o module_diag_trad_fields.o  ; \
+                fi
+make[3]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys'
+make[3]: Nothing to be done for `non_nmm'.
+make[3]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys'
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+if [ 1  -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " chemics ; fi
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+if [ 0 -eq 1 ] ; then ( cd chem ; make -i -r ) ; fi
+if [ 0 -eq 0 ] ; then \
+  if  [ "`echo -j 2 | sed -e 's/-j//g' -e 's/ \+//g'`" -gt "16" ] ; then \
+    ( cd chem ; make -i -r -j 16 ) ;  \
+  else \
+    ( cd chem ; make -i -r -j 2 ) ; \
+  fi \
+fi
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem'
+ar ru ../main/libwrflib.a module_data_isrpia_data.o module_data_ISRPIA.o module_data_isrpia_asrc.o module_data_isrpia_solut.o module_data_isrpia_kmc198.o module_data_isrpia_kmc223.o module_data_isrpia_kmc248.o module_data_isrpia_kmc273.o module_data_isrpia_kmc298.o module_data_isrpia_kmc323.o module_data_isrpia_expnc.o module_data_isrpia_caseg.o module_data_isrpia_casej.o isofwd.o isorev.o isocom.o moduleHETDATA.o moduleHETAERO.o moduleAERODATA.o aerorate_so2.o module_aer_opt_out.o module_add_emiss_burn.o module_add_emis_cptec.o module_bioemi_beis314.o module_chem_utilities.o module_cmu_dvode_solver.o module_ctrans_aqchem.o module_data_cbmz.o module_data_cmu_bulkaqchem.o module_data_gocartchem.o module_data_gocart_seas.o module_data_mosaic_kind.o module_data_mosaic_constants.o module_data_mosaic_aero.o module_data_mosaic_main.o module_data_mosaic_asect.o module_data_mosaic_asecthp.o module_data_mosaic_boxmod.o module_data_mosaic_other.o module_data_mosaic_therm.o module_data_radm2.o module_data_rrtmgaeropt.o module_data_megan2.o module_data_soa_vbs.o module_data_sorgam.o module_data_sorgam_vbs.o module_ftuv_subs.o module_ghg_fluxes.o module_gocart_drydep.o module_gocart_settling.o module_gocart_so2so4.o module_HLaw.o module_input_tracer_data.o module_interpolate.o module_mosaic_csuesat.o module_mozcart_wetscav.o module_peg_util.o module_tropopause.o module_upper_bc_driver.o module_vertmx_wrf.o module_wave_data.o module_wetdep_ls.o module_zero_plumegen_coms.o module_vash_settling.o module_chem_plumerise_scalar.o module_dep_simple.o module_gocart_dmsemis.o module_gocart_aerosols.o module_gocart_dust.o module_gocart_dust_afwa.o module_gocart_seasalt.o module_uoc_dust.o module_qf03.o module_soilpsd.o module_dust_load.o module_uoc_dustwd.o module_data_uoc_wd.o module_mosaic_addemiss.o module_mosaic_initmixrats.o module_mosaic_support.o module_mosaic_init_aerpar.o module_mosaic_ext.o module_mosaic_astem.o module_mosaic_lsode.o module_mosaic_box_aerchem.o module_mosaic_aerchem_intr.o module_mosaic_coag1d.o module_mosaic_coag3d.o module_mosaic_movesect1d.o module_mosaic_movesect3d.o module_mosaic_newnucb.o module_mosaic_sect_intr.o module_mosaic_aerdynam_intr.o module_mosaic_movesect.o module_mosaic_newnuc.o module_mosaic_soa_vbs.o module_cbmz_lsodes_solver.o module_cbmz_rodas3_solver.o module_cmu_bulkaqchem.o module_data_mgn2mech.o module_ftuv_driver.o module_fastj_data.o module_fastj_mie.o module_input_chem_data.o module_mosaic_coag.o module_mosaic_gly.o module_mosaic_wetscav.o module_mosaic_therm.o module_phot_mad.o params.mod.o numer.o rdxs.o rxn.o params_mod.o module_phot_tuv.o module_subs_tuv.o rtrans.o la_srb.o module_radm.o module_sorgam_aqchem.o module_sorgam_vbs_aqchem.o module_aerosols_soa_vbs.o module_aerosols_sorgam.o module_aerosols_sorgam_vbs.o module_bioemi_megan2.o module_bioemi_simple.o module_cbm4_initmixrats.o module_cb05_initmixrats.o module_cb05_vbs_initmixrats.o module_cbmz.o module_cbmz_initmixrats.o module_cbmz_rodas_prep.o module_ctrans_grell.o module_gocart_chem.o module_input_tracer.o module_lightning_nox_driver.o module_lightning_nox_ott.o module_lightning_nox_decaria.o module_mixactivate_wrappers.o module_mosaic_init_aerpar.o module_mosaic2_driver.o module_mosaic_sumpm.o module_mosaic_driver.o module_optical_averaging.o module_plumerise1.o module_mosaic_drydep.o module_wetscav_driver.o module_prep_wetscav_sorgam.o module_input_chem_bioemiss.o module_input_dust_errosion.o module_input_gocart_dms.o module_cbmz_addemiss.o module_cbm4_addemiss.o module_cb05_addemiss.o module_emissions_anthropogenics.o module_aer_drydep.o module_cam_mam_calcsize.o module_cam_mam_dust_sediment.o module_cam_mam_drydep.o module_cam_mam_init.o module_cam_mam_initaerodata.o module_cam_mam_initmixrats.o module_cam_mam_rename.o module_cam_mam_wateruptake.o module_cam_mam_gasaerexch.o module_cam_mam_coag.o module_cam_mam_newnuc.o module_cam_mam_aerchem_driver.o module_cam_mam_addemiss.o module_cam_mam_wetscav.o module_cam_mam_mz_aerosols_intr.o module_cam_mam_wetdep.o module_cam_mam_cloudchem.o module_cam_mam_setsox.o module_cam_mam_mo_chem_utls.o module_mosaic_cloudchem.o module_sorgam_cloudchem.o module_sorgam_vbs_cloudchem.o module_cam_mam_gas_wetdep_driver.o module_cam_mam_mo_sethet.o module_phot_fastj.o module_chem_cup.o module_isocom.o module_isofwd.o module_isorev.o chemics_init.o chem_driver.o cloudchem_driver.o photolysis_driver.o optical_driver.o mechanism_driver.o emissions_driver.o dry_dep_driver.o aerosol_driver.o 
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+if [ 1 -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " em_core ; fi
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+--------------------------------------
+if [ 1  -eq 0 ] ; then \
+	CF= ; \
+else \
+	CF="../chem/module_aerosols_sorgam.o ../chem/module_gocart_aerosols.o ../chem/module_mosaic_driver.o ../chem/module_input_tracer.o ../chem/module_aerosols_soa_vbs.o" ; \
+fi
+( cd dyn_em ; make -i -r -j 2 CF="" )
+make[2]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/dyn_em'
+ar ru ../main/libwrflib.a module_advect_em.o module_diffusion_em.o module_small_step_em.o module_big_step_utilities_em.o module_em.o module_solvedebug_em.o module_bc_em.o module_init_utilities.o module_wps_io_arw.o module_damping_em.o module_polarfft.o module_force_scm.o module_first_rk_step_part1.o module_first_rk_step_part2.o module_avgflx_em.o module_sfs_nba.o module_convtrans_prep.o module_sfs_driver.o module_stoch.o module_after_all_rk_steps.o  init_modules_em.o solve_em.o start_em.o shift_domain_em.o couple_or_uncouple_em.o nest_init_utils.o adapt_timestep_em.o interp_domain_em.o
+make[2]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/dyn_em'
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1'
+if [ 0 -eq 1 ]   ; then make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " nmm_core ; fi
+if [ 0 -eq 1 ]   ; then make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " wrf_hydro ; fi
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " SOLVER=em em_wrf )
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main'
+ranlib  libwrflib.a
+time mpif90 -f90=gfortran -o wrf.exe  -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    wrf.o ../main/module_wrf_top.o libwrflib.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/fftpack/fftpack5/libfftpack.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/libio_grib1.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share/libio_grib_share.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int/libwrfio_int.a -L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/RSL_LITE/librsl_lite.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame/module_internal_header_util.o /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame/pack_utils.o  -L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -lwrfio_nf -L/cluster-packages/apps/netcdf/gcc/64/4.1.3/lib -lnetcdff -lnetcdf        
+0.57user 0.48system 0:02.85elapsed 37%CPU (0avgtext+0avgdata 136804maxresident)k
+321112inputs+162328outputs (0major+42206minor)pagefaults 0swaps
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main'
+( cd run ; /bin/rm -f wrf.exe ; ln -s ../main/wrf.exe . )
+if [ 0 -eq 1 ] ; then \
+  ( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " SOLVER=em em_wrf_SST_ESMF ) ; \
+fi
+build started:   Thu  4 Oct 14:15:37 BST 2018
+build completed: Thu 4 Oct 14:15:54 BST 2018
+--------------------------------------
+( cd chem ; make -i -r MODULE_DIRS="-I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include " SOLVER=em IDEAL_CASE=real convert_emiss )
+make[1]: Entering directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem'
+rm -f convert_emiss.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" convert_emiss.F > convert_emiss.G
+/lib/cpp -P -nostdinc -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_SUBR  -DWRF_USE_CLM -DNO_IEEE_MODULE  -DDM_PARALLEL -DNETCDF -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=1 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -DWRF_CHEM -DBUILD_CHEM=1 -I. -traditional-cpp   convert_emiss.G  > convert_emiss.bb
+/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/tools/standard.exe convert_emiss.bb | /lib/cpp -P -nostdinc -traditional-cpp > convert_emiss.f90
+rm -f convert_emiss.G convert_emiss.bb
+time mpif90 -f90=gfortran -o convert_emiss.o -c -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4   -I../dyn_em -I../dyn_nmm  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90  -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/main -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/share -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/phys -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/wrftladj -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem -I/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/inc -I/cluster-packages/apps/netcdf/gcc/64/4.1.3/include    convert_emiss.f90
+19.27user 0.29system 0:19.63elapsed 99%CPU (0avgtext+0avgdata 341404maxresident)k
+136inputs+2256outputs (0major+131443minor)pagefaults 0swaps
+ranlib ../main/libwrflib.a
+time mpif90 -f90=gfortran -o convert_emiss.exe  -O2 -ftree-vectorize -funroll-loops -w -ffree-form -ffree-line-length-none -fconvert=big-endian -frecord-marker=4    convert_emiss.o ../main/libwrflib.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/fftpack/fftpack5/libfftpack.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib1/libio_grib1.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_grib_share/libio_grib_share.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_int/libwrfio_int.a -L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/esmf_time_f90 -lesmf_time /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/RSL_LITE/librsl_lite.a /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame/module_internal_header_util.o /data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/frame/pack_utils.o  -L/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/external/io_netcdf -lwrfio_nf -L/cluster-packages/apps/netcdf/gcc/64/4.1.3/lib -lnetcdff -lnetcdf       
+0.51user 0.44system 0:02.43elapsed 39%CPU (0avgtext+0avgdata 123004maxresident)k
+285840inputs+140312outputs (0major+39420minor)pagefaults 0swaps
+make[1]: Leaving directory `/data/scihub-users/giyoung/WRFChem_DEV/WRF-4.0.1/chem'
+( cd test/em_real ; /bin/rm -f convert_emiss.exe ; ln -s ../../chem/convert_emiss.exe . )
+( cd test/em_real ; /bin/rm -f README.namelist ; ln -s ../../run/README.namelist . )
+( cd run ; if test -f namelist.input ; then \
+	/bin/cp -f namelist.input namelist.input.backup.`date +%Y-%m-%d_%H_%M_%S` ; fi ; \
+	/bin/rm -f namelist.input ; cp ../test/em_real/namelist.input . )
