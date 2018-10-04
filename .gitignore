@@ -16,5 +16,5 @@
 *.a
 *.backup
 *.f90
-WPS-4.0/
+WPS-4.0.1/
 gitignore.txt
