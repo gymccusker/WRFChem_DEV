@@ -1,5 +1,3 @@
-
-
 !
 ! Todd Hutchinson
 ! WSI
