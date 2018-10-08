@@ -977,7 +977,7 @@
                               SNOWNC, SNOWNCV, &
                               GRAUPELNC, GRAUPELNCV, SR, &
 #if ( WRF_CHEM == 1 )
-                              chem, rainprod, evapprod, &
+                              chem, rainprod, evapprod, &  ! GYoung
 #endif
                               refl_10cm, diagflag, do_radar_ref,      &
                               re_cloud, re_ice, re_snow,              &
@@ -985,6 +985,10 @@
                               ids,ide, jds,jde, kds,kde, &             ! domain dims
                               ims,ime, jms,jme, kms,kme, &             ! memory dims
                               its,ite, jts,jte, kts,kte)               ! tile dims
+
+#if ( WRF_CHEM == 1 ) 
+      USE module_state_description, only: num_chem ! GYoung
+#endif
 
       implicit none
 
@@ -1002,7 +1006,8 @@
       INTEGER, INTENT(IN):: has_reqc, has_reqi, has_reqs
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT):: &
-                          chem, rainprod, evapprod
+                          rainprod, evapprod
+      real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(inout) :: chem  ! GYoung
 #endif
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(IN):: &
                           pii, p, w, dz

@@ -905,6 +905,7 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
                      GRAUPELNCV=GRAUPELNCV,              &
                      SR=SR,                              &
 #if ( WRF_CHEM == 1 )
+                     CHEM=chem,                          & ! GYoung
                      RAINPROD=rainprod,                  &
                      EVAPPROD=evapprod,                  &
 #endif
