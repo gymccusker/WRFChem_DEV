@@ -3585,6 +3585,9 @@ state   real   seas_1       ikjftb   chem       1         -   i0{12}rhusdf=(bdy_
 state   real   seas_2       ikjftb   chem       1         -   i0{12}rhusdf=(bdy_interp:dt)  "SEAS_2"    "sea-salt size bin 2: 1.0um effective radius"     "ug/kg-dryair"
 state   real   seas_3       ikjftb   chem       1         -   i0{12}rhusdf=(bdy_interp:dt)  "SEAS_3"    "sea-salt size bin 3: 3.2um effective radius"     "ug/kg-dryair"
 state   real   seas_4       ikjftb   chem       1         -   i0{12}rhusdf=(bdy_interp:dt)  "SEAS_4"    "sea-salt size bin 4: 7.5um effective radius"     "ug/kg-dryair"
+# Aerosol hygroscopicity and mean radius for T-E microphysics coupling
+state   real   Kappa        ikjftb   chem       1         -   i0{12}rhusdf=(bdy_interp:dt)   "KAPPA"         "Mean mass-weighted aerosol hygroscopicity" ""
+state   real   Ra_bar       ikjftb   chem       1         -   i0{12}rhusdf=(bdy_interp:dt)   "RA_BAR"        "Mean aerosol radius" "m"
 
 #Additional CAM modal aerosol variables inside the chem array...
 state   real   soag        ikjftb   chem        1         -   irhusdf=(bdy_interp:dt)  "soag"      "Gas-phase SOA"                      "ppmv"
