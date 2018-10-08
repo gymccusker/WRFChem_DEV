@@ -977,7 +977,7 @@
                               SNOWNC, SNOWNCV, &
                               GRAUPELNC, GRAUPELNCV, SR, &
 #if ( WRF_CHEM == 1 )
-                              rainprod, evapprod, &
+                              chem, rainprod, evapprod, &
 #endif
                               refl_10cm, diagflag, do_radar_ref,      &
                               re_cloud, re_ice, re_snow,              &
@@ -1002,7 +1002,7 @@
       INTEGER, INTENT(IN):: has_reqc, has_reqi, has_reqs
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT):: &
-                          rainprod, evapprod
+                          chem, rainprod, evapprod
 #endif
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(IN):: &
                           pii, p, w, dz
