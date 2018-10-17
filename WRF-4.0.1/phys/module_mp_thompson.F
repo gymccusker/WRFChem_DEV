@@ -1105,8 +1105,8 @@
       endif
 
       ! Initialise kappa3d and ra_bar3d for use in chem2qnwfa - G. Young
-      kappa3d(i,k,j) = chem(i,k,j,p_kappa)
-      ra_bar3d(i,k,j) = chem(i,k,j,p_ra_bar)
+      kappa3d(i,k,j) = chem(i,k,j,p_seas_1)
+      !ra_bar3d(i,k,j) = chem(i,k,j,p_ra_bar)
 
       do j = j_start, j_end
    	     do k = kts, kte-1
