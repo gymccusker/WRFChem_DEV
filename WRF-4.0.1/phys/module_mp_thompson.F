@@ -5469,9 +5469,9 @@
 
       subroutine chem2qnwfa (chem)
 
-!#if ( WRF_CHEM == 1 ) 
-!      USE module_state_description, only: num_chem ! GYoung
-!#endif
+#if ( WRF_CHEM == 1 ) 
+      USE module_state_description, only: num_chem ! GYoung
+#endif
 
       IMPLICIT NONE
 
