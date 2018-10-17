@@ -1132,7 +1132,7 @@
 
          ! test call of chem2qnwfa
 #if ( WRF_CHEM == 1 )         
-         call chem2qnwfa(chem)
+         call chem2qnwfa(chem, ims, ime, kms, kme, jms, jme)
 #endif
 
          if (is_aerosol_aware) then
@@ -5467,7 +5467,7 @@
 !.. 
 !+---+-----------------------------------------------------------------+
 
-      subroutine chem2qnwfa (chem)
+      subroutine chem2qnwfa (chem, ims, ime, kms, kme, jms, jme)
 
 #if ( WRF_CHEM == 1 ) 
       USE module_state_description, only: num_chem ! GYoung
@@ -5476,6 +5476,7 @@
       IMPLICIT NONE
 
 !..Sub arguments
+      INTEGER, INTENT(IN):: ims,ime, jms,jme, kms,kme
       real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(in) :: chem  ! GYoung, IN only (OUT for qnwfa2chem)
 !..Local variables
 
