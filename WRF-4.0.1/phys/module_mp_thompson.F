@@ -1129,6 +1129,12 @@
             ni1d(k) = ni(i,k,j)
             nr1d(k) = nr(i,k,j)
          enddo
+
+         ! test call of chem2qnwfa
+#if ( WRF_CHEM == 1 )         
+         call chem2qnwfa(chem)
+#endif
+
          if (is_aerosol_aware) then
             do k = kts, kte
                nc1d(k) = nc(i,k,j)
@@ -5449,6 +5455,33 @@
 
       end subroutine calc_refl10cm
 !
+!+---+-----------------------------------------------------------------+
+
+
+!+---+-----------------------------------------------------------------+
+!.. Use chem 4D var to calculate Kappa and Ra_bar. 
+!.. 
+!.. 
+!.. 
+!.. 
+!.. 
+!+---+-----------------------------------------------------------------+
+
+      subroutine chem2qnwfa (chem)
+
+!#if ( WRF_CHEM == 1 ) 
+!      USE module_state_description, only: num_chem ! GYoung
+!#endif
+
+      IMPLICIT NONE
+
+!..Sub arguments
+      real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(in) :: chem  ! GYoung, IN only (OUT for qnwfa2chem)
+!..Local variables
+
+      
+      end subroutine chem2qnwfa
+
 !+---+-----------------------------------------------------------------+
 
 !+---+-----------------------------------------------------------------+
