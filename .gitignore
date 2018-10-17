@@ -21,3 +21,4 @@ gitignore.txt
 met_em*
 wrf_input*
 wrf_bdy*
+compile_log.txt
