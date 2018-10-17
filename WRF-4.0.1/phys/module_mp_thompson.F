@@ -1007,7 +1007,8 @@
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT):: &
                           rainprod, evapprod
-      real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(inout) :: chem  ! GYoung
+      real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(inout) :: &
+                          chem  ! GYoung
 #endif
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(IN):: &
                           pii, p, w, dz
@@ -1017,6 +1018,8 @@
                           SNOWNC, SNOWNCV, GRAUPELNC, GRAUPELNCV
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT)::       &
                           refl_10cm
+      REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT)::       &
+                          kappa3d, ra_bar3d  ! GYoung
       REAL, INTENT(IN):: dt_in
       INTEGER, INTENT(IN):: itimestep
 
@@ -1024,7 +1027,8 @@
       REAL, DIMENSION(kts:kte):: &
                           qv1d, qc1d, qi1d, qr1d, qs1d, qg1d, ni1d,     &
                           nr1d, nc1d, nwfa1d, nifa1d,                   &
-                          t1d, p1d, w1d, dz1d, rho, dBZ
+                          t1d, p1d, w1d, dz1d, rho, dBZ,                &
+                          kappa1d, ra_bar1d   ! GYoung
       REAL, DIMENSION(kts:kte):: re_qc1d, re_qi1d, re_qs1d
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(kts:kte):: &
@@ -1099,6 +1103,26 @@
          CALL wrf_debug(0, mp_debug)
       endif
 
+      ! Initialise kappa3d and ra_bar3d for use in chem2qnwfa - G. Young
+      kappa3d(i,k,j) = chem(i,k,j,kappa)
+      ra_bar3d(i,k,j) = chem(i,k,j,ra_bar)
+
+      do j = j_start, j_end
+   	     do k = kts, kte-1
+            do i = i_start, i_end
+               kappa3d(i,k,j) = 0.
+               ra_bar3d(i,k,j) = 0.
+            enddo
+         enddo
+      enddo
+
+
+         ! test call of chem2qnwfa - G. Young
+#if ( WRF_CHEM == 1 )         
+         call chem2qnwfa(chem, ims, ime, kms, kme, jms, jme, kappa3d, ra_bar3d)
+#endif
+
+
       j_loop:  do j = j_start, j_end
       i_loop:  do i = i_start, i_end
 
@@ -1130,10 +1154,6 @@
             nr1d(k) = nr(i,k,j)
          enddo
 
-         ! test call of chem2qnwfa
-#if ( WRF_CHEM == 1 )         
-         call chem2qnwfa(chem, ims, ime, kms, kme, jms, jme)
-#endif
 
          if (is_aerosol_aware) then
             do k = kts, kte
@@ -5467,7 +5487,7 @@
 !.. 
 !+---+-----------------------------------------------------------------+
 
-      subroutine chem2qnwfa (chem, ims, ime, kms, kme, jms, jme)
+      subroutine chem2qnwfa (chem, ims, ime, kms, kme, jms, jme, kappa, ra_bar)
 
 #if ( WRF_CHEM == 1 ) 
       USE module_state_description, only: num_chem ! GYoung
@@ -5477,7 +5497,10 @@
 
 !..Sub arguments
       INTEGER, INTENT(IN):: ims,ime, jms,jme, kms,kme
-      real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(in) :: chem  ! GYoung, IN only (OUT for qnwfa2chem)
+      real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(in) :: &
+                                  chem  ! GYoung, IN only (OUT for qnwfa2chem)
+      real, dimension( ims:ime, kms:kme, jms:jme ), intent(inout) ::        &
+                                  kappa, ra_bar
 !..Local variables
 
       
