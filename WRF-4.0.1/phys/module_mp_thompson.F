@@ -1018,8 +1018,6 @@
                           SNOWNC, SNOWNCV, GRAUPELNC, GRAUPELNCV
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT)::       &
                           refl_10cm
-      REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT)::       &
-                          kappa3d, ra_bar3d  ! GYoung
       REAL, INTENT(IN):: dt_in
       INTEGER, INTENT(IN):: itimestep
 
@@ -1028,11 +1026,14 @@
                           qv1d, qc1d, qi1d, qr1d, qs1d, qg1d, ni1d,     &
                           nr1d, nc1d, nwfa1d, nifa1d,                   &
                           t1d, p1d, w1d, dz1d, rho, dBZ,                &
-                          kappa1d, ra_bar1d   ! GYoung
       REAL, DIMENSION(kts:kte):: re_qc1d, re_qi1d, re_qs1d
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(kts:kte):: &
                           rainprod1d, evapprod1d
+      REAL, DIMENSION(ims:ime, kms:kme, jms:jme) ::       &
+                          kappa3d, ra_bar3d  ! GYoung
+      REAL, DIMENSION(kts:kte):: &
+                          kappa1d, ra_bar1d   ! GYoung
 #endif
       REAL, DIMENSION(its:ite, jts:jte):: pcp_ra, pcp_sn, pcp_gr, pcp_ic
       REAL:: dt, pptrain, pptsnow, pptgraul, pptice
@@ -1104,8 +1105,8 @@
       endif
 
       ! Initialise kappa3d and ra_bar3d for use in chem2qnwfa - G. Young
-      kappa3d(i,k,j) = chem(i,k,j,kappa)
-      ra_bar3d(i,k,j) = chem(i,k,j,ra_bar)
+      kappa3d(i,k,j) = chem(i,k,j,p_kappa)
+      ra_bar3d(i,k,j) = chem(i,k,j,p_ra_bar)
 
       do j = j_start, j_end
    	     do k = kts, kte-1
