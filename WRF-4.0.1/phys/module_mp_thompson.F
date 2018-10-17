@@ -1025,7 +1025,7 @@
       REAL, DIMENSION(kts:kte):: &
                           qv1d, qc1d, qi1d, qr1d, qs1d, qg1d, ni1d,     &
                           nr1d, nc1d, nwfa1d, nifa1d,                   &
-                          t1d, p1d, w1d, dz1d, rho, dBZ,                &
+                          t1d, p1d, w1d, dz1d, rho, dBZ
       REAL, DIMENSION(kts:kte):: re_qc1d, re_qi1d, re_qs1d
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(kts:kte):: &
@@ -5490,9 +5490,7 @@
 
       subroutine chem2qnwfa (chem, ims, ime, kms, kme, jms, jme, kappa, ra_bar)
 
-#if ( WRF_CHEM == 1 ) 
       USE module_state_description, only: num_chem ! GYoung
-#endif
 
       IMPLICIT NONE
 
