@@ -504,8 +504,9 @@ state    real   rimi             ikj    misc        1         -     irh      "RI
 state    real   qnwfa2d          ij     misc        1         -     i014rhdu "QNWFA2D"        "Surface aerosol number conc emission"  "kg-1 s-1"
 state    real   qnifa2d          ij     misc        1         -     i014rhdu "QNIFA2D"        "Surface dust number conc emission"  "kg-1 s-1"
 # Aerosol hygroscopicity and mean radius for T-E microphysics coupling
-state    real   kappa            ikj    misc        1         -     i0rhusdf=(bdy_interp:dt)   "KAPPA"         "Mean mass-weighted aerosol hygroscopicity" ""
-state    real   ra_bar           ikj    misc        1         -     i0rhusdf=(bdy_interp:dt)   "RA_BAR"        "Mean aerosol radius" "m"
+state    real   kappa            ikj    misc        1         -     rh        "KAPPA"         "Mean mass-weighted aerosol hygroscopicity" ""
+state    real   ra_bar           ikj    misc        1         -     rh        "RA_BAR"        "Mean aerosol radius" "m"
+
 state    real   re_cloud         ikj    misc        1         -     r        "RE_CLOUD"       "Effective radius cloud water"  "m"
 state    real   re_ice           ikj    misc        1         -     r        "RE_ICE"         "Effective radius cloud ice"    "m"
 state    real   re_snow          ikj    misc        1         -     r        "RE_SNOW"        "Effective radius snow"         "m"
