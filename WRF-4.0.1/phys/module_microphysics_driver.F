@@ -846,7 +846,8 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
                      GRAUPELNCV=GRAUPELNCV,              &
                      SR=SR,                              &
 #if ( WRF_CHEM == 1 )
-                     CHEM=chem,                          &
+                     CHEM=chem, KAPPA3D=chem%kappa,      &
+                     RA_BAR3D=chem%ra_bar,               &
                      RAINPROD=rainprod,                  &
                      EVAPPROD=evapprod,                  &
 #endif
