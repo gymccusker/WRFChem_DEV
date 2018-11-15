@@ -977,7 +977,8 @@
                               SNOWNC, SNOWNCV, &
                               GRAUPELNC, GRAUPELNCV, SR, &
 #if ( WRF_CHEM == 1 )
-                              chem, rainprod, evapprod, &  ! GYoung
+                              chem, kappa3d, ra_bar, rainprod,        &
+                              evapprod,                               &  ! GYoung
 #endif
                               refl_10cm, diagflag, do_radar_ref,      &
                               re_cloud, re_ice, re_snow,              &
@@ -1030,7 +1031,7 @@
 #if ( WRF_CHEM == 1 )
       REAL, DIMENSION(kts:kte):: &
                           rainprod1d, evapprod1d
-      REAL, DIMENSION(ims:ime, kms:kme, jms:jme) ::       &
+      REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT) ::       &
                           kappa3d, ra_bar3d  ! GYoung
       REAL, DIMENSION(kts:kte):: &
                           kappa1d, ra_bar1d   ! GYoung
@@ -1105,7 +1106,7 @@
       endif
 
       ! Initialise kappa3d and ra_bar3d for use in chem2qnwfa - G. Young
-      kappa3d(i,k,j) = chem(i,k,j,p_seas_1)
+      !kappa3d(i,k,j) = chem(i,k,j,p_seas_1)
       !ra_bar3d(i,k,j) = chem(i,k,j,p_ra_bar)
 
       do j = j_start, j_end
