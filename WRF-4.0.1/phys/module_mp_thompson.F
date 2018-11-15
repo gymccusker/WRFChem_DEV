@@ -972,13 +972,14 @@
 !+---+-----------------------------------------------------------------+
       SUBROUTINE mp_gt_driver(qv, qc, qr, qi, qs, qg, ni, nr, nc,       &
                               nwfa, nifa, nwfa2d, nifa2d,               &
+                              kappa, ra_bar,                            &  !GYoung
                               th, pii, p, w, dz, dt_in, itimestep,      &
                               RAINNC, RAINNCV, &
                               SNOWNC, SNOWNCV, &
                               GRAUPELNC, GRAUPELNCV, SR, &
 #if ( WRF_CHEM == 1 )
-                              chem, kappa3d, ra_bar, rainprod,        &
-                              evapprod,                               &  ! GYoung
+                              chem, rainprod,        &
+                              evapprod,                               & 
 #endif
                               refl_10cm, diagflag, do_radar_ref,      &
                               re_cloud, re_ice, re_snow,              &
@@ -1032,7 +1033,7 @@
       REAL, DIMENSION(kts:kte):: &
                           rainprod1d, evapprod1d
       REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT) ::       &
-                          kappa3d, ra_bar3d  ! GYoung
+                          kappa, ra_bar  ! GYoung
       REAL, DIMENSION(kts:kte):: &
                           kappa1d, ra_bar1d   ! GYoung
 #endif
@@ -1112,8 +1113,8 @@
       do j = j_start, j_end
    	     do k = kts, kte-1
             do i = i_start, i_end
-               kappa3d(i,k,j) = 0.
-               ra_bar3d(i,k,j) = 0.
+               kappa(i,k,j) = 0.
+               ra_bar(i,k,j) = 0.
             enddo
          enddo
       enddo
@@ -1121,7 +1122,7 @@
 
          ! test call of chem2qnwfa - G. Young
 #if ( WRF_CHEM == 1 )         
-         call chem2qnwfa(chem, ims, ime, kms, kme, jms, jme, kappa3d, ra_bar3d)
+         call chem2qnwfa(chem, ims, ime, kms, kme, jms, jme, kappa, ra_bar)
 #endif
 
 
@@ -5489,7 +5490,7 @@
 !.. 
 !+---+-----------------------------------------------------------------+
 
-      subroutine chem2qnwfa (chem, ims, ime, kms, kme, jms, jme, kappa, ra_bar)
+      subroutine chem2qnwfa (chem, ims, ime, kms, kme, jms, jme, kappa3d, ra_bar3d)
 
       USE module_state_description, only: num_chem ! GYoung
 
@@ -5500,7 +5501,7 @@
       real, dimension( ims:ime, kms:kme, jms:jme, num_chem ), intent(in) :: &
                                   chem  ! GYoung, IN only (OUT for qnwfa2chem)
       real, dimension( ims:ime, kms:kme, jms:jme ), intent(inout) ::        &
-                                  kappa, ra_bar
+                                  kappa3d, ra_bar3d
 !..Local variables
 
       

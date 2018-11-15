@@ -21,7 +21,7 @@ SUBROUTINE microphysics_driver(                                          &
                       ,ims,ime, jms,jme, kms,kme                         &
                       ,ips,ipe, jps,jpe, kps,kpe                         &
                       ,i_start,i_end,j_start,j_end,kts,kte               &
-                      ,num_tiles, naer                                   &
+                      ,num_tiles, naer, kappa, ra_bar                    & ! GYoung
 !======================
                       !Variables required for CAMMGMP Scheme
                       ,dlf,dlf2,t_phy,p_hyd,p8w_hyd,tke_pbl,z_at_w,qfx   &
@@ -425,6 +425,9 @@ SUBROUTINE microphysics_driver(                                          &
  REAL, OPTIONAL, DIMENSION( ims:ime, kms:kme, jms:jme, num_chem),     &
       INTENT(INOUT) ::                                                &
                                                                  chem      !Chem array for CAMMGMP scheme Prognostic aerosols      
+ REAL, OPTIONAL, DIMENSION( ims:ime, kms:kme, jms:jme),     &
+      INTENT(INOUT) ::               kappa, ra_bar      !GYoung
+
 #endif
 !outs
 REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
@@ -831,6 +834,8 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
                      NIFA=qnifa_curr,                    &
                      NWFA2D=qnwfa2d,                     &
                      NIFA2D=qnifa2d,                     &
+                     KAPPA=kappa,                        &   ! GYoung
+                     RA_BAR=ra_bar,                      &   ! GYoung
                      TH=th,                              &
                      PII=pi_phy,                         &
                      P=p,                                &
@@ -846,8 +851,7 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
                      GRAUPELNCV=GRAUPELNCV,              &
                      SR=SR,                              &
 #if ( WRF_CHEM == 1 )
-                     CHEM=chem, KAPPA3D=chem%kappa,      &
-                     RA_BAR3D=chem%ra_bar,               &
+                     CHEM=chem,                          &
                      RAINPROD=rainprod,                  &
                      EVAPPROD=evapprod,                  &
 #endif
@@ -906,7 +910,7 @@ REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                        &
                      GRAUPELNCV=GRAUPELNCV,              &
                      SR=SR,                              &
 #if ( WRF_CHEM == 1 )
-                     CHEM=chem,                          & ! GYoung
+                     CHEM=chem,                          &
                      RAINPROD=rainprod,                  &
                      EVAPPROD=evapprod,                  &
 #endif
